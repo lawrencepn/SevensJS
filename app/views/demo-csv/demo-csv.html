@@ -1,0 +1,24 @@
+
+<div class="container">
+
+    <div class="uploadStation">
+        <p>Upload And Parse CSV</p>
+        <div class="dragOnMe" id="dragOnMe">
+            <p>DRAG FILE HERE TO START UPLOAD</p>
+
+        </div>
+        <div class="fileError" id="fileError"></div>
+        <div class="fileData" id="fileData">
+
+        </div>
+        <div class="uploadActions" ng-hide="validFile">
+            <button class="uploadButton" analytics-track="o|Upload" id="uploadButton">Upload</button>
+        </div>
+    </div>
+    <div class="makerStation">
+        <p>Upload And Parse CSV</p>
+        <div>
+            <button analytics-track="o|MakeCSV" ng-click="makeCSV()" class="makeButton">Make CSV FROM JSON</button>
+        </div>
+    </div>
+</div>
