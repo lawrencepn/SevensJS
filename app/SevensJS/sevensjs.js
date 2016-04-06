@@ -5,18 +5,14 @@
 var SevensJs = (function(){
 
     var API = {},
-        privateD = "Hello My People"
 
-    API.move = function(){
-        return "move me";
+    version = function(){
+        return 1.0
     }
-    API.go = function(){
-        return "let me go"
+
+    return {
+        version : version
     }
-    //define('SevensJs', function(){
-    //    return SevensJs;
-    //})
-    return API
 
 }());
 

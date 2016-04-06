@@ -12,7 +12,7 @@
 
         </div>
         <div class="uploadActions" ng-hide="validFile">
-            <button class="uploadButton" analytics-track="o|Upload" id="uploadButton">Upload</button>
+            <button class="uploadButton"  ng-click="_this.upload()" id="uploadButton">Upload</button>
         </div>
     </div>
     <div class="makerStation">
@@ -20,5 +20,8 @@
         <div>
             <button analytics-track="o|MakeCSV" ng-click="makeCSV()" class="makeButton">Make CSV FROM JSON</button>
         </div>
+    </div>
+    <div>
+        <p>Entries: {{_this.test}}</p>
     </div>
 </div>

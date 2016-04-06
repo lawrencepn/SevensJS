@@ -3,11 +3,8 @@
  */
 var SevensJs = (function(SevensJsAPI){
 
-    SevensJsAPI.makeCSV = function (dataTable) {
-        console.log(dataTable)
-        return exportCSV(dataTable)
-    }
-
+    //TODO: Try and Catch
+    //private
     function exportCSV (dt){
         //print every row on a new line
         var headers = dt[0], body = dt[1];
@@ -41,7 +38,13 @@ var SevensJs = (function(SevensJsAPI){
         for (var y = un_kl - 1; y >= 0; y--) {
             fg += un_k[y].join() + "\r\n";
         }
+
         return new Blob([fg], {type:'text/csv'});
+    }
+
+    //public
+    SevensJsAPI.makeCSV = function (dataTable) {
+        return exportCSV(dataTable)
     }
 
     return SevensJsAPI

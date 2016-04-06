@@ -1794,7 +1794,7 @@ var SevensJs = (function(SevensJsAPI){
     SevensJsAPI.makePDF =  jsPDF
     return SevensJsAPI
 
-}(SevensJs));
+}(SevensJs || {}));
 /** @preserve
  * jsPDF - PDF Document creation from JavaScript
  * Version 1.0.272-git Built on 2014-09-29T15:09
