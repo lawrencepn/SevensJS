@@ -4,5 +4,5 @@
 angular.module('nigeriaConstants', [])
 
 .constant('NigeriaConstants', {
-    s_account : 'accstandardbanknigeriaib2015'
+    s_account : 'accstandardbank.roa.ghana'
 })

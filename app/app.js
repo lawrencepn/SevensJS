@@ -13,6 +13,6 @@ angular.module('myApp', [
         $urlRouterProvider.otherwise('/demo-csv');
     }])
     .run(['sevensjs','NigeriaConstants', function (sevensjs, NigeriaConstants) {
-        //init site catalyst for tracking and pass country specific profile name
-        sevensjs.analytics.init(NigeriaConstants.s_account)
-    }]);
+    //init site catalyst for tracking and pass country specific profile name
+    sevensjs.analytics.init(NigeriaConstants.s_account)
+}]);

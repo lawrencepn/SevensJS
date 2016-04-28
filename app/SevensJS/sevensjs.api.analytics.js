@@ -36,17 +36,23 @@ var SevensJs = (function(SevensJsAPI, AppMeasurement){
         s.linkTrackEvents="None"
         s.trackingServer="accstandardbank.d1.sc.omtrdc.net"
         s.trackingServerSecure="accstandardbank.d1.sc.omtrdc.net"
+        s.server = "accstandardbank.d1.sc.omtrdc.net"
+        s.channel = "GhanaIB" //Need to confirm this
 
         xs = s;
 
     }
 
     k.trackView = function (stateName) {
-        return xs.track("Demo State")
+        //pass the state name or page name to the pageName Property
+        xs.pageName = stateName
+        xs.t()
     }
 
-    k.trackEvent = function(props){
-        return xs.track(props)
+    k.trackEvent = function(action, props){
+        // analytics.trackEvent( 'o', 'dashboard | actions | click on hero tile ' );
+        console.log(xs)
+        xs.tl(true, action, props)
     }
 
     return SevensJsAPI
@@ -65,7 +71,6 @@ var SevensJs = (function(SevensJsAPI, AppMeasurement){
 
     // html attribute for buttons and links that you want to track
     var directive = function(sevensjs){
-
         function link(scope, el, attr){
 
             //add event lister for click / touch
@@ -75,7 +80,13 @@ var SevensJs = (function(SevensJsAPI, AppMeasurement){
             function trackEvent(){
                 if(attr !== undefined){
                     try {
-                        sevensjs.analytics.trackEvent(String(attr.analyticsTrack))
+                        //get action type from attribute
+                        var ov = attr.analyticsTrack;
+                        var actionType = ov.charAt(0);
+                        var eventProperty = ov.slice(1).replace(/\|/,"").trim();
+                        //remove the everything before the first | character
+                        sevensjs.analytics.trackEvent(actionType, eventProperty);
+
                     }catch(e){
                         console.log(e)
                     }
