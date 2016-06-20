@@ -7,12 +7,17 @@ angular.module('myApp', [
         'myApp.demo-pdf',
         'myApp.version',
         'sevensjs',
-        'nigeriaConstants'
+        'countryConstants'
     ])
     .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/demo-csv');
     }])
-    .run(['sevensjs','NigeriaConstants', function (sevensjs, NigeriaConstants) {
+    .run(['sevensjs','CountryConstants', function (sevensjs, CountryConstants) {
     //init site catalyst for tracking and pass country specific profile name
-    sevensjs.analytics.init(NigeriaConstants.s_account)
+        var conf = {
+            country_sacc : CountryConstants.ghana.s_account,
+            country_channel : CountryConstants.ghana.channel
+        }
+
+        sevensjs.analytics.init(conf)
 }]);
