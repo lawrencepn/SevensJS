@@ -24,7 +24,14 @@
     <div>
         <p>Entries: {{_this.test}}</p>
     </div>
+    <div><h3>Site Catalyst Demos</h3></div>
     <div class="catalystEventDemos">
-        <button analytics-track="o | account view | actions | download print">Catalyst Demo</button>
+        <button analytics-track="o | account view | actions | download print">Tracking Directive Demo</button>
+        <button ng-click="_this.exitSurvey('landing','ELL')">Survey: Like</button>
+        <button ng-click="_this.exitSurvey()">Closed Modal In Landing page</button>
+        <button ng-click="_this.exitSurvey('landing','ELD')">Survey: Don't Like</button>
+        <button ng-click="_this.exitSurvey()">Closed Modal In Reason page</button>
+        <button ng-click="_this.exitSurvey('reason','ERS', 'Selected Reason ng-options')">Survey: Selected Reason</button>
+        <button ng-click="_this.exitSurvey('reason','ERS', 'Provided Custom Reason')">Survey: Provided Reason</button>
     </div>
 </div>

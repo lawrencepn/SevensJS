@@ -5,11 +5,11 @@ angular.module('countryConstants', [])
 
 .constant('CountryConstants', {
     nigeria :{
-        s_account : 'accstandardbank.roa.nigeria',
+        s_account : 'accstandardbank.roa.dev',
         channel : ''
     },
     ghana : {
-        s_account : 'accstandardbank.roa.ghana',
+        s_account : 'accstandardbank.roa.dev',
         channel : 'GhanaIB-Retail',
         sme_channel : "GhanaIB-SME"
     }

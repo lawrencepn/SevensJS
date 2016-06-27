@@ -53,6 +53,11 @@ function demoCSVController(sevensjs, TableData, Upload) {
         console.log(_this.test)
     }
 
+    _this.exitSurvey = function(pageName, response, reason){
+        sevensjs.analytics.exitSurvey(arguments)
+    }
+
+
 
 
     dropbox = document.getElementById("dragOnMe");

@@ -85,6 +85,7 @@ var SevensJs = (function(SevensJsAPI, AppMeasurement){
     SevensJsAPI.analytics = {};
     var k = SevensJsAPI.analytics;
     var xs;
+    var count_call;
 
     k.init = function(arg){
        var s = AppMeasurement.getInstance(arg.country_sacc)
@@ -121,11 +122,11 @@ var SevensJs = (function(SevensJsAPI, AppMeasurement){
         xs.tl(true, action, props);
     };
     /**
-    * @Parameters : [String=stateName], [String=response] optional
+    * @Parameters : [String=stateName], [String=response] optional, [String=reason] optional
      * exitSurvey('landing','ELL')
     * */
-    k.exitSurvey = function(stateName, response){
-        //response: like, noLike
+    k.exitSurvey = function(data){
+
         var prop53 = {
 
             ELL: "ExitSurvey.Landing.LikeIt",
@@ -141,6 +142,30 @@ var SevensJs = (function(SevensJsAPI, AppMeasurement){
             reason : "ROAWEB.ExitSurvey.Reason"
         };
 
+        var args = Array.from(arguments[0]);
+        //response: like, noLike
+        var stateName = args[0] || null;
+        var response = args[1] || null;
+        var reason = args[2] || null;
+
+        if(args.length > 0){
+            count_call = +1;
+        }
+
+        if(args.length == 0){
+            if(count_call == undefined){
+                response = 'ELE';
+                stateName = 'landing';
+                console.log('LANDING')
+
+            }else if(count_call > 0){
+                //this is the reason page
+                response = 'ERE';
+                stateName = 'reason';
+            }
+
+        }
+
         //for prop53 append 'click' to prop53 e.g : click: ExitSurvey.Landing.LikeIt
         //for s.tl() append 'click' to prop53 e.g : ExitSurvey.Landing.LikeIt.click
 
@@ -148,21 +173,25 @@ var SevensJs = (function(SevensJsAPI, AppMeasurement){
         var _tl = prop53[response] + '.click';
 
         //defaults
-        if(response !== 'ERS') {
+        xs.linkTrackVars = 'events,prop51,prop53,pageName';
+        xs.pageName = pageName[stateName];
+        xs.prop50 = pageName[stateName];
+        xs.prop51 = 'exitSurvey';
+        xs.prop53 = _prop53;
 
-            xs.linkTrackVars = 'events,prop51,prop53,pageName';
-            xs.pageName = pageName[stateName];
-            xs.prop50 = xs.pageName;
-            xs.prop51 = 'exitSurvey';
-            xs.prop53 = _prop53;
+        //if the response is ERS, the user is on the Don't Like Screen and
+        //will has provide reason by means of selection and option of typed in a response
+        if(response == 'ERS') {
 
-        }else{
+            if( reason !== null ){
+                xs.linkTrackEvents = 'event78';
+                xs.prop63 = reason;
+            }
 
-            xs.linkTrackEvents = 'event78';
-            xs.prop63 = response;
         }
 
         xs.tl(true, 'o', _tl);
+
     };
 
     return SevensJsAPI
